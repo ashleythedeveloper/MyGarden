@@ -13,7 +13,8 @@ const pool = new Pool({
 });
 
 exports.GetData = async (startDate, endDate) => {
-  const query = await pool.query("SELECT * FROM my_garden_records WHERE date_time BETWEEN $1 AND $2 ORDER BY id ASC;", [startDate + 'T00:00:00', endDate + 'T23:59:59'])
+  console.log(startDate)
+  const query = await pool.query("SELECT * FROM my_garden_records WHERE date_time BETWEEN $1 AND $2 ORDER BY id ASC;", [(new Date(startDate + 'T00:00:00')).getTime(), (new Date(endDate + 'T23:59:59')).getTime()])
     .then((data) => {
       return data
     })

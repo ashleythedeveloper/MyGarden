@@ -6,30 +6,29 @@ exports.RetrieveData = async (req, res) => {
   const endDate = req.query.endDate ? req.query.endDate : defaultDate.slice(0, 10)
 
 
-  const listDestructor = (list) => {
-    let data = {
-      timeList: [],
-      tempList: [],
-      humidityList: []
-    };
+  // const listDestructor = (list) => {
+  //   let data = {
+  //     timeList: [],
+  //     tempList: [],
+  //     humidityList: []
+  //   };
 
-    for (item in list) {
-      const timestamp = new Date(list[item].date_time + 'z');
-
-      const localTime = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-      data.timeList.push(localTime)
-      data.tempList.push(list[item].temperature)
-      data.humidityList.push(list[item].humidity)
-    };
-    return data
-  };
-
+  //   for (item in list){
+  //     const timestamp = new Date(list[item].date_time+'z');
+      
+  //     const localTime = timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', hour12: true});
+  //     data.timeList.push(localTime)
+  //     data.tempList.push(list[item].temperature)
+  //     data.humidityList.push(list[item].humidity)
+  //   };
+  //   return data
+  // };
   try {
-    const data = await database.GetData(startDate, endDate);
-    const formattedData = listDestructor(data.rows);
-    res.send(formattedData)
-  } catch (err) {
-    res.status(500).send({ message: err.message })
+  const data = await database.GetData(startDate, endDate);
+  //  const formattedData = listDestructor(data.rows);
+   res.send(data.rows)
+  } catch (err){
+    res.status(500).send({message: err.message})
   }
 }
 
