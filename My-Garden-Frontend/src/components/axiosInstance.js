@@ -1,7 +1,9 @@
 import axios from 'axios';
 
   
-  const baseURL = 'http://localhost:5000';
+  const baseURL = 'https://api.mygarden.ashleythewebdeveloper.com.au';
+  // const baseURL = 'http://localhost:5001';
+
   
   const axiosInstance = axios.create({
     baseURL: baseURL,
