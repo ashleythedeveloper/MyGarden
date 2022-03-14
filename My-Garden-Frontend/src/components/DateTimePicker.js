@@ -1,5 +1,4 @@
-import 'date-fns';
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -9,34 +8,41 @@ import {
 
 
 export default function MaterialUIPickers(props) {
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState({
-      startDate: new Date().toISOString().slice(0, 10),
-      endDate: new Date().toISOString().slice(0, 10)
-    });
+
+  const [selectedDate, setSelectedDate] = useState({
+    startDate: new Date().toISOString().slice(0, 10),
+    endDate: new Date().toISOString().slice(0, 10)
+  });
+
+
   const handleStartDateChange = (date) => {
     props.callback({
-        startDate: date.toISOString().slice(0, 10),
-        endDate: selectedDate.endDate
+      startDate: date.toISOString().slice(0, 10),
+      endDate: selectedDate.endDate
     })
+
     setSelectedDate({
-        startDate: date.toISOString().slice(0, 10),
-        endDate: selectedDate.endDate
+      startDate: date.toISOString().slice(0, 10),
+      endDate: selectedDate.endDate
     });
     ;
   };
+
+
   const handleEndDateChange = (date) => {
     props.callback({
-        startDate: selectedDate.startDate,
-        endDate: date.toISOString().slice(0, 10)
+      startDate: selectedDate.startDate,
+      endDate: date.toISOString().slice(0, 10)
     });
+
     setSelectedDate({
-        startDate: selectedDate.startDate,
-        endDate: date.toISOString().slice(0, 10)
+      startDate: selectedDate.startDate,
+      endDate: date.toISOString().slice(0, 10)
     });
-    
+
   };
-  console.log(selectedDate)
+
+
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justifyContent="space-around">

@@ -2,10 +2,8 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import CssBaseLine from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router-dom'
 
 
 
@@ -36,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
     const classes = useStyles();
     return (
-        <React.Fragment>
-            <CssBaseLine />
+        <>
             <AppBar
                 position='static'
                 color='inherit'
@@ -50,8 +47,8 @@ function Header() {
                     </Typography>
                 </ToolBar>
             </AppBar>
-        </React.Fragment>
+        </>
     );
 }
 
-export default withRouter(Header);
+export default Header;
